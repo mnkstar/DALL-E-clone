@@ -1,15 +1,13 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const connectDb = (url) => {
+const connectDB = (url) => {
     mongoose.set('strictQuery', true);
-}
+    mongoose.connect(url)
+        .then(() => console.log('connected to mongo'))
+        .catch((err) => {
+            console.error('failed to connect with mongo');
+            console.error(err);
+        });
+};
 
-mongoose
-    .connect(url)
-    .then(() => {
-        console.log("Connected to Mongo Db")
-    }).catch((error) => {
-        console.log(`Error ${error}`)
-    });
-
-export default connectDb;
+export default connectDB;
