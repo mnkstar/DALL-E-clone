@@ -13,8 +13,15 @@ const CreatePost = () => {
   });
 
   const handleSubmit = () => {};
-  const handleChange = () => {};
-  const handleSurpriseMe = () => {};
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt });
+  };
 
   const generateImage = () => {};
 
@@ -75,7 +82,7 @@ const CreatePost = () => {
           <button
             type="button"
             onClick={generateImage}
-            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:bg-green-500"
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
@@ -87,7 +94,7 @@ const CreatePost = () => {
           </p>
           <button
             type="submit"
-            className="mt-3 text-white font-medium bg-[#6469ff] rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center  "
+            className="mt-3 text-white font-medium bg-[#6469ff] rounded-md text-sm w-full sm:w-auto px-5 py-2.5 hover:bg-blue-400 text-center  "
           >
             {loading ? "Sharing..." : "Share with Community"}
           </button>
